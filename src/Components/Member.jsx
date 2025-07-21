@@ -1,5 +1,5 @@
 import React from 'react'
-import Star from "../assets/Community/Star.png"
+import Star from "../assets/Community/star.png"
 import LikeThumb from "../assets/Community/LikeThumb.png"
 import Share from "../assets/Community/Share.png"
 
