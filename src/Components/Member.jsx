@@ -11,6 +11,7 @@ const Member = ({profliePic, profileAlt, RecipeTitle, username, userIdea, Recipe
 				<div className='flex gap-3'>
 					<img className='rounded-full' src={profliePic} alt={profileAlt} />
 					<div>
+						{/* {for streak} */}
 						<p className='font-medium text-xl'>{RecipeTitle}</p>
 						<p className='opacity-50'>{username}</p>
 					</div>
