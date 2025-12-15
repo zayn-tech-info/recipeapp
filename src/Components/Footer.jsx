@@ -12,7 +12,6 @@ const Footer = () => {
       </h2>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-  
           <div className="space-y-8">
             <div className="flex items-center gap-2">
               <span className="text-3xl">🍔</span>
@@ -99,18 +98,35 @@ const Footer = () => {
                   Social
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {["Instagram", "Twitter", "YouTube", "Facebook"].map(
-                    (item) => (
-                      <li key={item}>
-                        <a
-                          href="#"
-                          className="text-sm leading-6 text-gray-300 hover:text-primary transition-colors"
-                        >
-                          {item}
-                        </a>
-                      </li>
-                    )
-                  )}
+                  {[
+                    {
+                      acc: "Instagram",
+                      link: "https://www.instagram.com/_zayn.ai_/",
+                    },
+                    {
+                      acc: "Twitter",
+                      link: "https://x.com/zayntech_info",
+                    },
+                    {
+                      acc: "YouTube",
+                      link: "https://www.youtube.com/channel/UCKq0lxMHqWynZh187i7hAIQ",
+                    },
+                    {
+                      acc: "Facebook",
+                      link: "https://web.facebook.com/profile.php?id=100082225316435",
+                    },
+                  ].map((item) => (
+                    <li key={item}>
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm leading-6 text-gray-300 hover:text-primary transition-colors"
+                      >
+                        {item.acc}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
