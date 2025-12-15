@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+
 const Search = ({ setFoodData }) => {
-
-  const [query, setQuery] = useState("jelly");
-  const [inputValue, setInputValue] = useState()
-  // const [data, setData] = useState(null)
-
+  const [query, setQuery] = useState("pizza");
+  const [inputValue, setInputValue] = useState("");
   const apiKey = "fd813fc248e843e89abfd1eaa306dcf5";
   const URL = "https://api.spoonacular.com/recipes/complexSearch";
-  
+
   useEffect(() => {
     async function fetchFood() {
       if (!query) return;
@@ -15,29 +14,43 @@ const Search = ({ setFoodData }) => {
         const res = await fetch(`${URL}?query=${query}&apiKey=${apiKey}`);
         const data = await res.json();
         setFoodData(data.results || []);
-        console.log(data)
       } catch (error) {
-        console.log("Error fetching food data:", error);
+        console.error("Error fetching food data:", error);
       }
     }
     fetchFood();
-  }, [query, setFoodData, URL]);
+  }, [query, setFoodData]);
 
-  useEffect(()=>{
-    if(inputValue !== "") {
-      setQuery(inputValue)
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      setQuery(inputValue);
     }
-  }, [inputValue])
+  };
 
   return (
-    <div className="mx-auto flex justify-center my-10">
-      <input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        className="border-1 px-2 outline-0 w-100 rounded-md p-1"
-        type="text"
-        placeholder="Search for recipe"
-      />
+    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+      <form
+        onSubmit={handleSearch}
+        className="relative flex items-center shadow-lg rounded-2xl bg-white overflow-hidden border border-gray-100 ring-4 ring-gray-50/50"
+      >
+        <div className="pl-4 text-gray-400">
+          <MagnifyingGlassIcon className="h-6 w-6" />
+        </div>
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          className="w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none text-lg placeholder-gray-400"
+          type="text"
+          placeholder="What do you want to cook today?"
+        />
+        <button
+          type="submit"
+          className="bg-primary hover:bg-primary-hover text-white font-semibold py-2 px-8 m-2 rounded-xl transition-colors duration-200"
+        >
+          Search
+        </button>
+      </form>
     </div>
   );
 };
